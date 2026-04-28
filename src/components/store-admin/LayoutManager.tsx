@@ -260,7 +260,7 @@ export default function LayoutManager() {
                         <div className="space-y-2">
                             <Label className="text-[10px] font-black uppercase tracking-widest text-slate-400 flex items-center justify-between">
                                 <span>Mobile Image URL (Optional)</span>
-                                <span className="text-[9px] text-indigo-500 font-bold">Best: 800x800px</span>
+                                <span className="text-[9px] text-indigo-500 font-bold">Best: 800x120px</span>
                             </Label>
                             <Input
                                 value={bannerForm.mobile_image_url}
@@ -268,8 +268,9 @@ export default function LayoutManager() {
                                 placeholder="https://ik.imagekit.io/..."
                                 className="h-11 rounded-2xl bg-slate-50 border-slate-100"
                             />
+                            <p className="text-[10px] text-slate-400 font-medium px-1">💡 For a premium feel, use a slim edge-to-edge banner without text overlay. Text will be hidden on mobile if this is provided.</p>
                             {bannerForm.mobile_image_url && (
-                                <div className="w-24 aspect-square rounded-2xl overflow-hidden border border-slate-100 mt-2 bg-slate-50">
+                                <div className="w-full h-12 rounded-lg overflow-hidden border border-slate-100 mt-2 bg-slate-50">
                                     <img src={bannerForm.mobile_image_url} alt="mobile preview" className="w-full h-full object-cover" />
                                 </div>
                             )}

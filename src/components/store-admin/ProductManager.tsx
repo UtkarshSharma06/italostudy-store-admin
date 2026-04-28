@@ -23,7 +23,6 @@ import {
     Copy,
     ExternalLink,
     Upload,
-    Upload,
     Link as LinkIcon,
     ShieldCheck
 } from 'lucide-react';
@@ -162,6 +161,7 @@ export default function ProductManager() {
             download_url: '',
             is_bundle: false,
             bundle_items: [],
+            gst_percentage: '18',
             is_active: true
         });
         setEditingId(null);
