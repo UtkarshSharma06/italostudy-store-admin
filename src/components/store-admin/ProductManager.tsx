@@ -629,7 +629,6 @@ export default function ProductManager() {
                                         </div>
                                         <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-2">Supports Cloudinary & Direct Links</p>
                                     </div>
-                                    </div>
                                 </div>
                             </form>
 
