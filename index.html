@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Performance: DNS Prefetch & Preconnect (most critical first) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://jyjhpqtqbwtxxgijxetq.supabase.co" crossorigin>
+  <!-- ImageKit CDN — used for all optimized images across the platform -->
+  <link rel="preconnect" href="https://ik.imagekit.io" crossorigin>
+  <link rel="dns-prefetch" href="https://ik.imagekit.io">
+  <link rel="dns-prefetch" href="https://ipapi.co">
+
+  <!-- Preload Critical Assets -->
+  <!-- Preload Critical Assets (Local paths for maximum reliability) -->
+  <link rel="preload" href="/logo.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="/images/hero/banner-img.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="/images/hero/about-img-bg.webp" as="image" type="image/webp">
+
+  <!-- Outfit — Primary Brand Font (Consolidated) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"></noscript>
+
+
+
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="uQqeVzzdOhR0Nb7s2EjgPEWhCBkUH-WYsDE5os5XgjI" />
+
+  <!-- Google AdSense — deferred to prioritize LCP/FID -->
+  <script>
+    // Load AdSense only well after initial paint to prevent CPU bottleneck
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7472926437419938';
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      }, 5000); // 5 sec delay — critical rendering first
+    });
+  </script>
+  <meta name="google-adsense-account" content="ca-pub-7472926437419938">
+
+  <!-- Website Title and Branding (Fallback) -->
+  <title>Italostudy Store Admin</title>
+  <meta name="description"
+    content="Administrative Control Panel for the Italostudy Store. Manage products, orders, and storefront configuration." />
+  <meta name="author" content="ItaloStudy" />
+  <meta name="keywords"
+    content="ItaloStudy, store admin, ecommerce management, product manager, order fulfillment" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://store-admin.italostudy.com/" />
+  <meta property="og:title" content="Italostudy Store Admin" />
+  <meta property="og:description"
+    content="Administrative Control Panel for the Italostudy Store." />
+  <meta property="og:image" content="https://italostudy.com/logo.webp" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://store-admin.italostudy.com/" />
+  <meta property="twitter:title" content="Italostudy Store Admin" />
+  <meta property="twitter:description"
+    content="Administrative Control Panel for the Italostudy Store." />
+  <meta name="twitter:image" content="https://italostudy.com/logo.webp" />
+
+  <!-- Favicons and Brand Identity -->
+  <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=2" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png?v=2" />
+  <link rel="apple-touch-icon" href="/favicon.png?v=2" />
+  <meta name="theme-color" content="#6366f1" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #fff;
+      color: #050e38;
+    }
+
+    #root {
+      min-height: 100vh
+    }
+
+    /* Critical Hero Styles — Inlined for FCP/LCP */
+    .hero-two-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1rem;
+      min-height: 80vh;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-two-col {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 4rem 3rem;
+      }
+    }
+
+    .hero-heading {
+      font-size: clamp(36px, 6vw, 70px);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text {
+      color: #6b7280;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    .hero-banner-img {
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+    }
+
+    /* ── Inline Pre-JS Skeleton ─────────────────────────────────────────── */
+    @keyframes _sk {
+      0%   { background-position: -800px 0 }
+      100% { background-position:  800px 0 }
+    }
+    .sk-bar {
+      background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+      background-size: 1600px 100%;
+      animation: _sk 1.8s infinite linear;
+      border-radius: 6px;
+    }
+    #app-sk {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+    }
+    #app-sk.sk-out {
+      opacity: 0;
+      transition: opacity 0.18s ease;
+    }
+  </style>
+
+  <!-- Dynamic meta tags will be injected here by react-helmet-async -->
+
+  <!-- SEO Schema for Brand Recognition -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ItaloStudy",
+      "alternateName": ["italostudy", "italo study"],
+      "url": "https://italostudy.com",
+      "logo": "https://italostudy.com/logo.webp",
+      "description": "Administrative Control Panel for Italostudy.",
+      "sameAs": [
+        "https://www.instagram.com/italostudycom",
+        "https://chat.whatsapp.com/CfVh7u9L6vT7ZFpZwwVa4A"
+      ]
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- ── Inline Pre-JS Skeleton ──────────────────────────────────────────
+       Renders instantly (< 50ms) before any JavaScript downloads.
+       Removed by main.tsx after React's first paint via requestAnimationFrame.
+  ─────────────────────────────────────────────────────────────────────── -->
+  <div id="app-sk" aria-hidden="true">
+    <div style="display:flex;height:100vh;">
+      <!-- Sidebar Skeleton -->
+      <div style="width:260px;border-right:1px solid #f1f5f9;display:flex;flex-direction:column;padding:2rem 1.5rem;gap:2rem;">
+        <div class="sk-bar" style="width:140px;height:32px;border-radius:8px;background:linear-gradient(90deg,#e0e7ff 25%,#c7d2fe 50%,#e0e7ff 75%);background-size:1600px 100%;"></div>
+        <div style="display:flex;flex-direction:column;gap:1rem;margin-top:2rem;">
+          <div class="sk-bar" style="width:100%;height:40px;"></div>
+          <div class="sk-bar" style="width:100%;height:40px;"></div>
+          <div class="sk-bar" style="width:100%;height:40px;"></div>
+          <div class="sk-bar" style="width:100%;height:40px;"></div>
+        </div>
+      </div>
+      <!-- Main Content Skeleton -->
+      <div style="flex:1;display:flex;flex-direction:column;">
+        <div style="height:64px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;padding:0 2rem;justify-content:space-between;">
+          <div class="sk-bar" style="width:200px;height:24px;"></div>
+          <div class="sk-bar" style="width:40px;height:40px;border-radius:50%;"></div>
+        </div>
+        <div style="padding:2rem;display:flex;flex-direction:column;gap:2rem;">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;">
+            <div class="sk-bar" style="height:120px;border-radius:16px;"></div>
+            <div class="sk-bar" style="height:120px;border-radius:16px;"></div>
+            <div class="sk-bar" style="height:120px;border-radius:16px;"></div>
+            <div class="sk-bar" style="height:120px;border-radius:16px;"></div>
+          </div>
+          <div class="sk-bar" style="flex:1;height:400px;border-radius:24px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Show desktop nav items on larger screens
+    if (window.innerWidth >= 1024) {
+      ['sk-n1','sk-n2','sk-n3'].forEach(function(id){
+        var el = document.getElementById(id);
+        if(el) el.style.display = 'block';
+      });
+    }
+  </script>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+
+</body>
+
+</html>
