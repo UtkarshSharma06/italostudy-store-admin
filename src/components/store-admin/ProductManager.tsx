@@ -81,6 +81,7 @@ export default function ProductManager() {
         gst_percentage: '18',
         is_active: true
     });
+    const [externalUrl, setExternalUrl] = useState('');
 
     useEffect(() => {
         fetchProducts();
@@ -110,10 +111,19 @@ export default function ProductManager() {
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        
+        // Ensure pending external URL is added before submit
+        let currentImages = [...formData.images];
+        if (externalUrl.trim()) {
+            currentImages = [...currentImages, externalUrl.trim()];
+            setExternalUrl('');
+        }
+
         setIsSubmitting(true);
 
         const productData = {
             ...formData,
+            images: currentImages,
             price: parseFloat(formData.price),
             discount_price: formData.discount_price ? parseFloat(formData.discount_price) : null,
             stock_quantity: parseInt(formData.stock_quantity),
@@ -165,6 +175,7 @@ export default function ProductManager() {
             is_active: true
         });
         setEditingId(null);
+        setExternalUrl('');
     };
 
     const startEdit = (product: Product) => {
@@ -219,6 +230,17 @@ export default function ProductManager() {
             ...prev,
             images: prev.images.filter((_, i) => i !== index)
         }));
+    };
+
+    const addExternalImage = () => {
+        if (externalUrl.trim()) {
+            setFormData(prev => ({
+                ...prev,
+                images: [...prev.images, externalUrl.trim()]
+            }));
+            setExternalUrl('');
+            toast({ title: 'Image Added', description: 'External URL added to gallery.' });
+        }
     };
 
     const toggleBundleItem = (id: string) => {
@@ -584,20 +606,29 @@ export default function ProductManager() {
                                                 <Input 
                                                     placeholder="Or paste external URL..."
                                                     className="h-10 pl-10 rounded-xl bg-slate-50 border-slate-100 text-xs"
+                                                    value={externalUrl}
+                                                    onChange={(e) => setExternalUrl(e.target.value)}
+                                                    onBlur={addExternalImage}
                                                     onKeyDown={(e) => {
                                                         if (e.key === 'Enter') {
                                                             e.preventDefault();
-                                                            const val = (e.target as HTMLInputElement).value;
-                                                            if (val) {
-                                                                setFormData(p => ({ ...p, images: [...p.images, val] }));
-                                                                (e.target as HTMLInputElement).value = '';
-                                                            }
+                                                            addExternalImage();
                                                         }
                                                     }}
                                                 />
                                             </div>
-                                            <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Supports Cloudinary</p>
+                                            <Button 
+                                                type="button"
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={addExternalImage}
+                                                className="h-10 rounded-xl px-4 text-[10px] font-black uppercase tracking-widest border-slate-200"
+                                            >
+                                                Add
+                                            </Button>
                                         </div>
+                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-2">Supports Cloudinary & Direct Links</p>
+                                    </div>
                                     </div>
                                 </div>
                             </form>
