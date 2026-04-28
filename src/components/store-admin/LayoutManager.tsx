@@ -268,7 +268,7 @@ export default function LayoutManager() {
                                 placeholder="https://ik.imagekit.io/..."
                                 className="h-11 rounded-2xl bg-slate-50 border-slate-100"
                             />
-                            <p className="text-[10px] text-slate-400 font-medium px-1">💡 For a premium feel, use a slim edge-to-edge banner without text overlay. Text will be hidden on mobile if this is provided.</p>
+                            <p className="text-[10px] text-slate-400 font-medium px-1">💡 For a premium feel, use a slim banner that complements the text overlay.</p>
                             {bannerForm.mobile_image_url && (
                                 <div className="w-full h-12 rounded-lg overflow-hidden border border-slate-100 mt-2 bg-slate-50">
                                     <img src={bannerForm.mobile_image_url} alt="mobile preview" className="w-full h-full object-cover" />
