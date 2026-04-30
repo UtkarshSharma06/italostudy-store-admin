@@ -387,6 +387,44 @@ function StoreSettings() {
                 </Button>
             </div>
 
+            {/* Store Visibility */}
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-rose-50 dark:bg-rose-900/30 rounded-2xl flex items-center justify-center">
+                            <ShieldCheck className="w-6 h-6 text-rose-600 dark:text-rose-400" />
+                        </div>
+                        <div>
+                            <h4 className="text-sm font-black uppercase tracking-widest text-slate-900 dark:text-white">Store Visibility</h4>
+                            <p className="text-[11px] text-slate-400 font-medium mt-0.5">
+                                Toggle Maintenance Mode to show a "Coming Soon" screen
+                            </p>
+                        </div>
+                    </div>
+                    <button
+                        onClick={() => setStoreConfig((p: any) => ({ ...p, maintenance_mode: !p.maintenance_mode }))}
+                        className={cn(
+                            "w-14 h-8 rounded-full p-1 transition-all duration-200",
+                            storeConfig.maintenance_mode ? "bg-rose-600" : "bg-slate-200 dark:bg-slate-700"
+                        )}
+                    >
+                        <motion.div
+                            animate={{ x: storeConfig.maintenance_mode ? 24 : 0 }}
+                            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                            className="w-6 h-6 bg-white rounded-full shadow-sm"
+                        />
+                    </button>
+                </div>
+                
+                {storeConfig.maintenance_mode && (
+                    <div className="p-4 bg-rose-50 dark:bg-rose-900/10 rounded-2xl border border-rose-100 dark:border-rose-900/30">
+                        <p className="text-[10px] font-black uppercase tracking-widest text-rose-600 text-center">
+                            STORE IS CURRENTLY IN MAINTENANCE MODE. CUSTOMERS WILL SEE "COMING SOON" SCREEN.
+                        </p>
+                    </div>
+                )}
+            </div>
+
             {/* Payment Mode Toggle */}
             <div className="bg-white dark:bg-slate-900 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm">
                 <div className="flex items-center gap-4 mb-6">
